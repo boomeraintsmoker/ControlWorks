@@ -6,5 +6,4 @@ public:
     int maxSearch(int* ar, int size);
     int minSearch(int* ar, int size);
 };
-
 #endif

@@ -55,6 +55,7 @@ int Task2::maxSearch(int* ar, int size)
     return 1;
 }
 
+
 int Task2::minSearch(int* ar, int size)
 {
     static int i = 0;

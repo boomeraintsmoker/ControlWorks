@@ -11,3 +11,4 @@ task2.o: task2.cpp
    
 clear: 
 	rm -rf *.o res_task2_3
+
