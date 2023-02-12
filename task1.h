@@ -5,7 +5,7 @@ public:
     void arCounter(int*, int);
     void countingSort(int*, int, int*, int);
     void showAr(int*, int, int, int);
-    void isSorted(int*, int);
-    void testAr(Task1*);
+    void isSorted(int*, int);	//очень странная функция... если isSorted, то надо вернуть bool
+    void testAr(Task1*);	//вообще жесть! т.е. ты создаёшь объект, а потом этот же объект передаёшь в член класса??? зачем так?
 };
 #endif // TASK1_H

@@ -18,6 +18,6 @@ task2.o: task2.cpp
 task3.o: task3.cpp
 	g++ -c task3.cpp
         
-clear: 
+clean: 
 	rm -rf *.o a.out
 

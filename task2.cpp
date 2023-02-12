@@ -6,16 +6,37 @@ void Task2::testMinMax(Task2* tasker) {
     std::cout << "---- TASK №2 ----" << std::endl;
 
     { /* test_1 */ std::cout << "---- Test №1 ----" << std::endl;
-        const int SIZE1 = 10; int ar1[SIZE1]; const int MAXELEM1 = 500;
+        const int SIZE1 = 10; int ar1[SIZE1]; const int MAXELEM1 = 500;	//хорошо, что хоть всё остальное не на этой строчке....
+//такая функция есть
         srand(time(nullptr));
         for(int i = 0; i < SIZE1; i++) {
             ar1[i] = rand() % MAXELEM1;
             std::cout << ar1[i] << "  ";
         }
         std::cout << std::endl;
-        tasker->maxSearch(&ar1[0], SIZE1);
+//--------------------------------
+        tasker->maxSearch(&ar1[0], SIZE1);	//
         tasker->minSearch(&ar1[0], SIZE1);
     }
+
+    { /* test_1 */ std::cout << "---- Test №1 ----" << std::endl;
+        const int SIZE1 = 10; int ar1[SIZE1]; const int MAXELEM1 = 500;	//хорошо, что хоть всё остальное не на этой строчке....
+//такая функция есть
+	
+        srand(time(nullptr) + 1);
+        for(int i = 0; i < SIZE1; i++) {
+            ar1[i] = rand() % MAXELEM1;
+            std::cout << ar1[i] << "  ";
+        }
+        std::cout << std::endl;
+//--------------------------------
+        tasker->maxSearch(&ar1[0], SIZE1);	//
+        tasker->minSearch(&ar1[0], SIZE1);
+    }
+
+//КОММЕНТИРОВАТЬ КОД и ВЫКЛАДЫВАТЬ ЕГО В РЕПУ КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО!!!! И ВООБЩЕ ОСТАВЛЯТЬ ЗАКОММЕНТИРОВАННЫЙ КОД ЭТО ДУРНАЯ ПРИВЫЧКА!!!
+
+
 //    { /* test_2 */ std::cout << "---- Test №2 ----" << std::endl;
 //        const int SIZE2 = 10; int ar2[SIZE2]; const int MAXELEM2 = 17890;
 //        srand(time(nullptr));
@@ -62,6 +83,7 @@ int Task2::maxSearch(int* ar, int size)
 
 int Task2::minSearch(int* ar, int size)
 {
+//ну потому что static юзать в рекурсивных функциях это плохо
     static int i = 0;
     static int depth = 0;
     depth++;
@@ -74,5 +96,8 @@ int Task2::minSearch(int* ar, int size)
         return minSearch(ar, size);
     }
     std::cout << "Minimum - " << minElem << std::endl;
+	i = 0;
+	depth = 0;
+	minElem = std::numeric_limits<int>::max();
     return 1;
 }
