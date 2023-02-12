@@ -6,12 +6,15 @@ void Task1::testAr(Task1* tasker) {
     std::cout << "---- TASK №1 ----" << std::endl;
 
     { /* test_1 */ std::cout << "---- Test №1 ----";
-        const int SIZE1 = 100; int ar1[SIZE1]; const int MAXELEM1 = 150; int counter1[MAXELEM1]; int minElem1 = 100;
+        const int SIZE1 = 100; int ar1[SIZE1]; const int MAXELEM1 = 150; int counter1[MAXELEM1]; int minElem1 = 100;	//так плохо.. один оператор одна строчка
+
+//эта функция рандомного заполнения массива... где-то я её уже видел.... зачем писать заново??
         srand(time(nullptr));
         for(int i = 0; i < SIZE1; i++) {
             ar1[i] = minElem1 + rand() % (MAXELEM1 - minElem1);
         }
         std::cout << std::endl;
+//---------------------------
         tasker->showAr(&ar1[0], SIZE1, 10, 10);
         tasker->arCounter(&counter1[0], MAXELEM1);
         tasker->countingSort(&ar1[0], SIZE1, &counter1[0], MAXELEM1);
@@ -70,7 +73,9 @@ void Task1::showAr(int* ar, int size, int height, int width) {
     std::cout << std::endl;
 }
 
-void Task1::arCounter(int* counter, int maxElem) {
+void Task1::arCounter(int* counter, int maxElem) {	//неочевидное название функции.... если это просто обнуление массива, то лучше назвать как setValAr(..., int val)
+//if you write only 0... them memset(counter, 0x00, maxEleme * sizeof(int));
+	
     for(int i = 0; i < maxElem; i++) {
         counter[i] = 0;
     }
@@ -91,12 +96,25 @@ void Task1::countingSort(int* ar, int size, int* counter, int maxElem) {
 void Task1::isSorted(int* ar, int size) {
     int counter = size;
     for(int i = 0; i < size; ++i) {
-        if(ar[i] <= ar[i + 1]) --counter;
+        if(ar[i] <= ar[i + 1]) 
+		--counter;
     }
-    if((counter - 1) == 0) std::cout << "-- Test passed! --" << std::endl;
+    if((counter - 1) == 0) 
+	std::cout << "-- Test passed! --" << std::endl;	// вывод данных и информации должен быть в других функциях...
+}
+/*
+void test() {
+	{	
+		//....
+		bool resSort = isSorted(....);
+		std::cout << (resSort ? "sorted" : "NOT sorted") << std::endl;
+		//or
+		assert(resSort == true);	//и здесь приложение рукнет, если массив не отсортирован
+
+	}
 }
 
-
+*/
 
 
 

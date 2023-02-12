@@ -46,6 +46,8 @@ void Task3::testMerge(Task3* tasker3) {
     tasker3->merge(&lAr1[0], LARSIZE1, &rAr1[0], RARSIZE1, &sAr1[0]);
     tasker3->showAr(&sAr1[0], SARSIZE1);
     }
+
+УЖОС
 //    { /* test_2 */
 //    const int LARSIZE2 = 5;
 //    int lAr2[LARSIZE2] = {1, 4, 7, 9, 11};

@@ -1,5 +1,8 @@
 #ifndef TASK2_H
 #define TASK2_H
+
+#include <limits>
+
 class Task2 {
 public:
 	int* maxElem = new int;
