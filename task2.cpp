@@ -66,8 +66,8 @@ void Task2::testMinMax(Task2* tasker) {
 int Task2::maxSearch(int* ar, int size)
 {
     static int i = 0;
-    static int count = 0;
-    count++;
+    static int depth = 0;
+    depth++;
 	static int maxElem = ar[0];
     if(i < size) {
         if(ar[i] > maxElem) {
@@ -77,6 +77,9 @@ int Task2::maxSearch(int* ar, int size)
         return maxSearch(ar, size);
     }
 	std::cout << "Maximum - " << maxElem << std::endl;
+	i = 0;
+    depth = 0;
+    maxElem = std::numeric_limits<int>::min();
 	return 1;
 }
 

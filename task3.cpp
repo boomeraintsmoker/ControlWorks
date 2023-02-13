@@ -46,16 +46,14 @@ void Task3::testMerge(Task3* tasker3) {
     tasker3->merge(&lAr1[0], LARSIZE1, &rAr1[0], RARSIZE1, &sAr1[0]);
     tasker3->showAr(&sAr1[0], SARSIZE1);
     }
-
-УЖОС
-//    { /* test_2 */
-//    const int LARSIZE2 = 5;
-//    int lAr2[LARSIZE2] = {1, 4, 7, 9, 11};
-//    const int RARSIZE2 = 6;
-//    int rAr2[RARSIZE2] = {0, 3, 4, 4, 10, 15};
-//    const int SARSIZE2 = LARSIZE2 + RARSIZE2;
-//    int sAr2[SARSIZE2];
-//    tasker3->merge(&lAr2[0], LARSIZE2, &rAr2[0], RARSIZE2, &sAr2[0]);
-//    tasker3->showAr(&sAr2[0], SARSIZE2);
-//    }
+    { /* test_2 */
+    const int LARSIZE2 = 5;
+    int lAr2[LARSIZE2] = {1, 4, 7, 9, 11};
+    const int RARSIZE2 = 6;
+    int rAr2[RARSIZE2] = {0, 3, 4, 4, 10, 15};
+    const int SARSIZE2 = LARSIZE2 + RARSIZE2;
+    int sAr2[SARSIZE2];
+    tasker3->merge(&lAr2[0], LARSIZE2, &rAr2[0], RARSIZE2, &sAr2[0]);
+    tasker3->showAr(&sAr2[0], SARSIZE2);
+    }
 }
