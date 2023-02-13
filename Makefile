@@ -1,13 +1,10 @@
 all: all_control
 
-all_control: main.o task0.o task1.o task2.o task3.o often_used_functions.o tester.o
-	g++ main.o task0.o task1.o task2.o task3.o often_used_functions.o tester.o -o all_control
+all_control: main.o task1.o task2.o task3.o often_used_functions.o tester.o
+	g++ main.o task1.o task2.o task3.o often_used_functions.o tester.o -o all_control
 
 main.o: main.cpp	
 	g++ -c main.cpp
-    
-task0.o: task0.cpp
-	g++ -c task0.cpp
 
 task1.o: task1.cpp
 	g++ -c task1.cpp
