@@ -1,70 +1,61 @@
 #include <iostream>
+#include <limits>
 #include "task2.h"
+#include "often_used_functions.h"
 
-void Task2::testMinMax(Task2* tasker) {
-
-    std::cout << "---- TASK №2 ----" << std::endl;
-
+void testMinMax() {
+    std::cout << std::endl;
     { /* test_1 */ std::cout << "---- Test №1 ----" << std::endl;
-        const int SIZE1 = 10; int ar1[SIZE1]; const int MAXELEM1 = 500;	//хорошо, что хоть всё остальное не на этой строчке....
-//такая функция есть
+        const int SIZE1 = 10;
+        int ar1[SIZE1];
+        int maxELement1 = 500;
+    // -----------------------
         srand(time(nullptr));
         for(int i = 0; i < SIZE1; i++) {
-            ar1[i] = rand() % MAXELEM1;
-            std::cout << ar1[i] << "  ";
+            ar1[i] = rand() % maxELement1;
         }
         std::cout << std::endl;
-//--------------------------------
-        tasker->maxSearch(&ar1[0], SIZE1);	//
-        tasker->minSearch(&ar1[0], SIZE1);
+    // -----------------------
+        showArForTasks_2_3(&ar1[0], SIZE1);
+        maxSearch(&ar1[0], SIZE1);
+        minSearch(&ar1[0], SIZE1);
     }
-
-    { /* test_1 */ std::cout << "---- Test №1 ----" << std::endl;
-        const int SIZE1 = 10; int ar1[SIZE1]; const int MAXELEM1 = 500;	//хорошо, что хоть всё остальное не на этой строчке....
-//такая функция есть
-	
-        srand(time(nullptr) + 1);
-        for(int i = 0; i < SIZE1; i++) {
-            ar1[i] = rand() % MAXELEM1;
-            std::cout << ar1[i] << "  ";
+    std::cout << std::endl;
+    { /* test_2 */ std::cout << "---- Test №2 ----" << std::endl;
+        const int SIZE2 = 10;
+        int ar2[SIZE2];
+        int maxELement2 = 12800;
+    // -----------------------
+        srand(time(nullptr));
+        for(int i = 0; i < SIZE2; i++) {
+            ar2[i] = rand() % maxELement2;
         }
         std::cout << std::endl;
-//--------------------------------
-        tasker->maxSearch(&ar1[0], SIZE1);	//
-        tasker->minSearch(&ar1[0], SIZE1);
+    // -----------------------
+        showArForTasks_2_3(&ar2[0], SIZE2);
+        maxSearch(&ar2[0], SIZE2);
+        minSearch(&ar2[0], SIZE2);
     }
-
-//КОММЕНТИРОВАТЬ КОД и ВЫКЛАДЫВАТЬ ЕГО В РЕПУ КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО!!!! И ВООБЩЕ ОСТАВЛЯТЬ ЗАКОММЕНТИРОВАННЫЙ КОД ЭТО ДУРНАЯ ПРИВЫЧКА!!!
-
-
-//    { /* test_2 */ std::cout << "---- Test №2 ----" << std::endl;
-//        const int SIZE2 = 10; int ar2[SIZE2]; const int MAXELEM2 = 17890;
-//        srand(time(nullptr));
-//        for(int i = 0; i < SIZE2; i++) {
-//            ar2[i] = rand() % MAXELEM2;
-//            std::cout << ar2[i] << "  ";
-//        }
-//        std::cout << std::endl;
-//        tasker->maxSearch(&ar2[0], SIZE2);
-//        tasker->minSearch(&ar2[0], SIZE2);
-//    }
-//    { /* test_3 */ std::cout << "---- Test №3 ----" << std::endl;
-//        const int SIZE3 = 10; int ar3[SIZE3]; const int MAXELEM3 = 17890;
-//        srand(time(nullptr));
-//        for(int i = 0; i < SIZE3; i++) {
-//            ar3[i] = rand() % MAXELEM3;
-//            std::cout << ar3[i] << "  ";
-//        }
-//        std::cout << std::endl;
-//        tasker->maxSearch(&ar3[0], SIZE3);
-//        tasker->minSearch(&ar3[0], SIZE3);
-//    }
-    //оставлю один тест - ошибка сохранилась
+    std::cout << std::endl;
+    { /* test_1 */ std::cout << "---- Test №3 ----" << std::endl;
+        const int SIZE3 = 10;
+        int ar3[SIZE3];
+        int maxELement3 = 500;
+    // -----------------------
+        srand(time(nullptr));
+        for(int i = 0; i < SIZE3; i++) {
+            ar3[i] = rand() % maxELement3;
+        }
+        std::cout << std::endl;
+    // -----------------------
+        showArForTasks_2_3(&ar3[0], SIZE3);
+        maxSearch(&ar3[0], SIZE3);
+        minSearch(&ar3[0], SIZE3);
+    }
     std::cout << std::endl;
 }
 
-int Task2::maxSearch(int* ar, int size)
-{
+int maxSearch(int* ar, int size) {
     static int i = 0;
     static int depth = 0;
     depth++;
@@ -83,10 +74,7 @@ int Task2::maxSearch(int* ar, int size)
 	return 1;
 }
 
-
-int Task2::minSearch(int* ar, int size)
-{
-//ну потому что static юзать в рекурсивных функциях это плохо
+int minSearch(int* ar, int size) {
     static int i = 0;
     static int depth = 0;
     depth++;
