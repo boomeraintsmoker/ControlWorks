@@ -1,5 +1,10 @@
 #include <iostream>
+#include <chrono>
+#include "sorts.h"
+#include "often_used_functions.h"
+#include "steps.h"
 
 int main() {
-	return 0;
+    test_bubble();
+    return 0;
 }	
