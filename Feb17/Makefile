@@ -1,7 +1,7 @@
-all: test_out
+all: itog.out
 
-test_out: main.o often_used_functions.o steps.o sorts.o
-	g++ -g  main.o often_used_functions.o steps.o sorts.o -o test_out
+itog.out: main.o often_used_functions.o steps.o sorts.o
+	g++ -g  main.o often_used_functions.o steps.o sorts.o -o itog.out
 
 main.o: main.cpp
 	g++ -g -c main.cpp
@@ -16,4 +16,4 @@ sorts.o: sorts.cpp
 	g++ -g -c sorts.cpp
 
 clean:
-	rm -rf *.o test_out
+	rm -rf *.o itog.out

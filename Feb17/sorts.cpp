@@ -65,42 +65,43 @@ void countingSort(int* ar, int size, int* counter, int maxElement) {
     }
 }
 
-void merge(int* lAr, int lArSize, int* rAr, int rArSize, int* sAr) {
-    int i = 0;
-    int j = 0;
-    while(i < lArSize && j < rArSize) {
-        if(lAr[i] < rAr[j]) {
-            sAr[i + j] = lAr[i];
-            i++;
+void merge(int* ar, int size, int central) {
+    int left = 0;
+    int right = central;
+    int* arTemp = new int [size];
+    int indexTemp = 0;
+
+    while (left < central && right < size) {
+        while(ar[left] <= ar[right] && left < central) {
+            arTemp[indexTemp++] = ar[left++];
         }
-        if(rAr[j] < lAr[i]) {
-            sAr[j + i] = rAr[j];
-            j++;
+        while(ar[left] > ar[right] && right < size) {
+            arTemp[indexTemp] = ar[right];
+            indexTemp++;
+            right++;
         }
     }
-    while(i < lArSize) {
-        sAr[i + j] = lAr[i];
-        i++;
+
+    while (left < central) {
+        arTemp[indexTemp++] = ar[left++];
     }
-    while(j < rArSize) {
-        sAr[j + i] = rAr[j];
-        j++;
+    while (right < size) {
+        arTemp[indexTemp++] = ar[right++];
     }
+
+    memcpy(ar, arTemp, size * sizeof(int));
+
+    delete [] arTemp;
 }
 
-int mergeSort(int* ar, int size) {
-    if(size <= 1) {
-        return -1;
+void mergeSort(int* ar, int size) {
+    if (size <= 1) {
+        return;
     }
-    int lSize = size/2;
-    int rSize = size - lSize;
-    mergeSort(ar, lSize);
-    mergeSort(ar + lSize, rSize);
-    int* sAr = new int[size];
-    merge(ar, lSize, ar + lSize, rSize, sAr);
-    std::memcpy(ar, sAr, sizeof(int) * size);
-    delete [] sAr;
-    return -1;
+    mergeSort(&ar[0], size >> 1);
+    mergeSort(&ar[size >> 1], size - (size >> 1));
+
+    merge(ar, size, size >> 1);
 }
 
 void swap(int& a, int& b) {
@@ -108,6 +109,7 @@ void swap(int& a, int& b) {
     a = b;
     b = temp;
 }
+
 void quickSort(int* ar, int size) {
     int left = 0;
     int right = size - 1;
