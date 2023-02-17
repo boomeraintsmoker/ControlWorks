@@ -317,20 +317,24 @@ void test_bubble() {
                 extra1 = -1;
             }
             if(extra1 == -1) {
-                return;
+                std::chrono::time_point<std::chrono::high_resolution_clock> start2;
+                std::chrono::time_point<std::chrono::high_resolution_clock> end2;
+                start2 = std::chrono::high_resolution_clock::now();
+                insertionSort(&ar[0], min_size);
+                end2 = std::chrono::high_resolution_clock::now();
+                std::chrono::duration<double> diff2 = end2 - start2;
+                std::cout << diff2.count() << '\t';
             }
             if(extra1 == 0) {
                 std::cout << diff1.count() << '\t';
+                std::chrono::time_point<std::chrono::high_resolution_clock> start2;
+                std::chrono::time_point<std::chrono::high_resolution_clock> end2;
+                start2 = std::chrono::high_resolution_clock::now();
+                insertionSort(&ar[0], min_size);
+                end2 = std::chrono::high_resolution_clock::now();
+                std::chrono::duration<double> diff2 = end2 - start2;
+                std::cout << diff2.count() << '\t';
             }
-
-            std::chrono::time_point<std::chrono::high_resolution_clock> start2;
-            std::chrono::time_point<std::chrono::high_resolution_clock> end2;
-            start2 = std::chrono::high_resolution_clock::now();
-            insertionSort(&ar[0], min_size);
-            end2 = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> diff2 = end2 - start2;
-            std::cout << diff2.count() << '\t';
-
             std::chrono::time_point<std::chrono::high_resolution_clock> start3;
             std::chrono::time_point<std::chrono::high_resolution_clock> end3;
             start3 = std::chrono::high_resolution_clock::now();
@@ -341,29 +345,44 @@ void test_bubble() {
                 extra3 = -1;
             }
             if(extra3 == -1) {
-                return;
+                int* counter = new int[999];
+                std::chrono::time_point<std::chrono::high_resolution_clock> start4;
+                std::chrono::time_point<std::chrono::high_resolution_clock> end4;
+                start4 = std::chrono::high_resolution_clock::now();
+                _putZerosToAr(&counter[0], 999);
+                countingSort(&ar[0], min_size, &counter[0], 999);
+                end4 = std::chrono::high_resolution_clock::now();
+                std::chrono::duration<double> diff4 = end4 - start4;
+                std::cout << diff4.count() << '\t';
+
+                std::chrono::time_point<std::chrono::high_resolution_clock> start5;
+                std::chrono::time_point<std::chrono::high_resolution_clock> end5;
+                start5 = std::chrono::high_resolution_clock::now();
+                quickSort(&ar[0], min_size);
+                end5 = std::chrono::high_resolution_clock::now();
+                std::chrono::duration<double> diff5 = end5 - start5;
+                std::cout << diff5.count() << std::endl;
             }
             if(extra3 == 0) {
                 std::cout << diff3.count() << '\t';
+                int* counter = new int[999];
+                std::chrono::time_point<std::chrono::high_resolution_clock> start4;
+                std::chrono::time_point<std::chrono::high_resolution_clock> end4;
+                start4 = std::chrono::high_resolution_clock::now();
+                _putZerosToAr(&counter[0], 999);
+                countingSort(&ar[0], min_size, &counter[0], 999);
+                end4 = std::chrono::high_resolution_clock::now();
+                std::chrono::duration<double> diff4 = end4 - start4;
+                std::cout << diff4.count() << '\t';
+
+                std::chrono::time_point<std::chrono::high_resolution_clock> start5;
+                std::chrono::time_point<std::chrono::high_resolution_clock> end5;
+                start5 = std::chrono::high_resolution_clock::now();
+                quickSort(&ar[0], min_size);
+                end5 = std::chrono::high_resolution_clock::now();
+                std::chrono::duration<double> diff5 = end5 - start5;
+                std::cout << diff5.count() << std::endl;
             }
-
-            int* counter = new int[999];
-            std::chrono::time_point<std::chrono::high_resolution_clock> start4;
-            std::chrono::time_point<std::chrono::high_resolution_clock> end4;
-            start4 = std::chrono::high_resolution_clock::now();
-            _putZerosToAr(&counter[0], 999);
-            countingSort(&ar[0], min_size, &counter[0], 999);
-            end4 = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> diff4 = end4 - start4;
-            std::cout << diff4.count() << '\t';
-
-            std::chrono::time_point<std::chrono::high_resolution_clock> start5;
-            std::chrono::time_point<std::chrono::high_resolution_clock> end5;
-            start5 = std::chrono::high_resolution_clock::now();
-            quickSort(&ar[0], min_size);
-            end5 = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> diff5 = end5 - start5;
-            std::cout << diff5.count() << std::endl;
 
             min_size = min_size + step;
             i++;
@@ -408,6 +427,7 @@ void test_bubble() {
                 std::chrono::duration<double> diff3 = end3 - start3;
                 std::cout << diff3.count() << '\t';
             }
+
             int* counter = new int[999];
             std::chrono::time_point<std::chrono::high_resolution_clock> start4;
             std::chrono::time_point<std::chrono::high_resolution_clock> end4;
