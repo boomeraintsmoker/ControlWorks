@@ -87,13 +87,7 @@ void test_sorts() {
             std::cout << diff4.count() << '\t';
             delete [] counter;
         // quick_sort
-            std::chrono::time_point<std::chrono::high_resolution_clock> start5;
-            std::chrono::time_point<std::chrono::high_resolution_clock> end5;
-            start5 = std::chrono::high_resolution_clock::now();
-            quickSort(&ar[0], min_size);
-            end5 = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> diff5 = end5 - start5;
-            std::cout << diff5.count() << '\t';
+            sortTime(quickSort, &ar[0], min_size);
         // merge_sort
             std::chrono::time_point<std::chrono::high_resolution_clock> start6;
             std::chrono::time_point<std::chrono::high_resolution_clock> end6;
@@ -139,13 +133,7 @@ void test_sorts() {
             std::cout << diff4.count() << '\t';
             delete [] counter;
         // quick_sort
-            std::chrono::time_point<std::chrono::high_resolution_clock> start5;
-            std::chrono::time_point<std::chrono::high_resolution_clock> end5;
-            start5 = std::chrono::high_resolution_clock::now();
-            quickSort(&ar[0], min_size);
-            end5 = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> diff5 = end5 - start5;
-            std::cout << diff5.count() << '\t';
+            sortTime(quickSort, &ar[0], min_size);
         // merge_sort
             std::chrono::time_point<std::chrono::high_resolution_clock> start6;
             std::chrono::time_point<std::chrono::high_resolution_clock> end6;
@@ -188,13 +176,7 @@ void test_sorts() {
             std::cout << diff4.count() << '\t';
             delete [] counter;
         // quick_sort
-            std::chrono::time_point<std::chrono::high_resolution_clock> start5;
-            std::chrono::time_point<std::chrono::high_resolution_clock> end5;
-            start5 = std::chrono::high_resolution_clock::now();
-            quickSort(&ar[0], min_size);
-            end5 = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> diff5 = end5 - start5;
-            std::cout << diff5.count() << '\t';
+            sortTime(quickSort, &ar[0], min_size);
         // merge_sort
             std::chrono::time_point<std::chrono::high_resolution_clock> start6;
             std::chrono::time_point<std::chrono::high_resolution_clock> end6;
@@ -238,13 +220,7 @@ void test_sorts() {
             std::cout << diff4.count() << '\t';
             delete [] counter;
         // quick_sort
-            std::chrono::time_point<std::chrono::high_resolution_clock> start5;
-            std::chrono::time_point<std::chrono::high_resolution_clock> end5;
-            start5 = std::chrono::high_resolution_clock::now();
-            quickSort(&ar[0], min_size);
-            end5 = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> diff5 = end5 - start5;
-            std::cout << diff5.count() << '\t';
+            sortTime(quickSort, &ar[0], min_size);
         // merge_sort
             std::chrono::time_point<std::chrono::high_resolution_clock> start6;
             std::chrono::time_point<std::chrono::high_resolution_clock> end6;
@@ -261,8 +237,6 @@ void test_sorts() {
         }
     }
     // ---------------------
-    int sort_remover1 = 0;
-    int sort_remover2 = 0;
     { /* test_6 (step: 100000, size: 200000 - 1000000) */
         int i = 0;
         int step = 100000;
@@ -272,109 +246,35 @@ void test_sorts() {
             randomAr(&ar[0], min_size);
             std::cout << min_size << '\t';
         // ---------------------------------
-        // bubble_sort и проверка её времени
-            std::chrono::time_point<std::chrono::high_resolution_clock> start1;
-            std::chrono::time_point<std::chrono::high_resolution_clock> end1;
-            start1 = std::chrono::high_resolution_clock::now();
-            bubbleSort(&ar[0], min_size);
-            end1 = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> diff1 = end1 - start1;
-        // --------------------------
-        // условие: если время выполнения > 60сек, то sort_remover = -1,
-        // если же sort_remover = -1, то выполняем все, кроме выбранной сортировки
-        // да - соглашусь - полный бред и можно куда проще, но пока в голову не приходит идея
-            if(diff1.count() > 60.0) {
-                sort_remover1 = -1;
-            }
-            if(sort_remover1 == -1) {
-                std::chrono::time_point<std::chrono::high_resolution_clock> start2;
-                std::chrono::time_point<std::chrono::high_resolution_clock> end2;
-                start2 = std::chrono::high_resolution_clock::now();
-                insertionSort(&ar[0], min_size);
-                end2 = std::chrono::high_resolution_clock::now();
-                std::chrono::duration<double> diff2 = end2 - start2;
-                std::cout << diff2.count() << '\t';
-            }
-            if(sort_remover1 == 0) {
-                std::cout << diff1.count() << '\t';
-                std::chrono::time_point<std::chrono::high_resolution_clock> start2;
-                std::chrono::time_point<std::chrono::high_resolution_clock> end2;
-                start2 = std::chrono::high_resolution_clock::now();
-                insertionSort(&ar[0], min_size);
-                end2 = std::chrono::high_resolution_clock::now();
-                std::chrono::duration<double> diff2 = end2 - start2;
-                std::cout << diff2.count() << '\t';
-            }
-        // selection_sort и снова проверка
-        // решил проверять на время только две самые долгие сортировки
-            std::chrono::time_point<std::chrono::high_resolution_clock> start3;
-            std::chrono::time_point<std::chrono::high_resolution_clock> end3;
-            start3 = std::chrono::high_resolution_clock::now();
-            selectionSort(&ar[0], min_size);
-            end3 = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> diff3 = end3 - start3;
-            if(diff3.count() > 60.0) {
-                sort_remover2 = -1;
-            }
-            if(sort_remover2 == -1) {
-                int* counter = new int[999];
-                std::chrono::time_point<std::chrono::high_resolution_clock> start4;
-                std::chrono::time_point<std::chrono::high_resolution_clock> end4;
-                start4 = std::chrono::high_resolution_clock::now();
-                _putZerosToAr(&counter[0], 999);
-                countingSort(&ar[0], min_size, &counter[0], 999);
-                end4 = std::chrono::high_resolution_clock::now();
-                std::chrono::duration<double> diff4 = end4 - start4;
-                std::cout << diff4.count() << '\t';
-                delete [] counter;
-        // -----------------------------------
-                std::chrono::time_point<std::chrono::high_resolution_clock> start5;
-                std::chrono::time_point<std::chrono::high_resolution_clock> end5;
-                start5 = std::chrono::high_resolution_clock::now();
-                quickSort(&ar[0], min_size);
-                end5 = std::chrono::high_resolution_clock::now();
-                std::chrono::duration<double> diff5 = end5 - start5;
-                std::cout << diff5.count() << '\t';
-        // -----------------------------------
-                std::chrono::time_point<std::chrono::high_resolution_clock> start6;
-                std::chrono::time_point<std::chrono::high_resolution_clock> end6;
-                start6 = std::chrono::high_resolution_clock::now();
-                mergeSort(&ar[0], min_size);
-                merge(&ar[0], min_size, min_size/2);
-                end6 = std::chrono::high_resolution_clock::now();
-                std::chrono::duration<double> diff6 = end6 - start6;
-                std::cout << diff6.count() << std::endl;
-            }
-            if(sort_remover2 == 0) {
-                std::cout << diff3.count() << '\t';
-                int* counter = new int[999];
-                std::chrono::time_point<std::chrono::high_resolution_clock> start4;
-                std::chrono::time_point<std::chrono::high_resolution_clock> end4;
-                start4 = std::chrono::high_resolution_clock::now();
-                _putZerosToAr(&counter[0], 999);
-                countingSort(&ar[0], min_size, &counter[0], 999);
-                end4 = std::chrono::high_resolution_clock::now();
-                std::chrono::duration<double> diff4 = end4 - start4;
-                std::cout << diff4.count() << '\t';
-                delete [] counter;
-        // --------------------------------
-                std::chrono::time_point<std::chrono::high_resolution_clock> start5;
-                std::chrono::time_point<std::chrono::high_resolution_clock> end5;
-                start5 = std::chrono::high_resolution_clock::now();
-                quickSort(&ar[0], min_size);
-                end5 = std::chrono::high_resolution_clock::now();
-                std::chrono::duration<double> diff5 = end5 - start5;
-                std::cout << diff5.count() << '\t';
-        // ----------------------------------
-                std::chrono::time_point<std::chrono::high_resolution_clock> start6;
-                std::chrono::time_point<std::chrono::high_resolution_clock> end6;
-                start6 = std::chrono::high_resolution_clock::now();
-                mergeSort(&ar[0], min_size);
-                merge(&ar[0], min_size, min_size/2);
-                end6 = std::chrono::high_resolution_clock::now();
-                std::chrono::duration<double> diff6 = end6 - start6;
-                std::cout << diff6.count() << std::endl;
-            }
+        // bubble sort
+            sortTime(bubbleSort, &ar[0], min_size);
+        // insertion sort
+            sortTime(insertionSort, &ar[0], min_size);
+        // selection sort
+            sortTime(selectionSort, &ar[0], min_size);
+        // counting sort
+            int* counter = new int[999];
+            std::chrono::time_point<std::chrono::high_resolution_clock> start4;
+            std::chrono::time_point<std::chrono::high_resolution_clock> end4;
+            start4 = std::chrono::high_resolution_clock::now();
+            _putZerosToAr(&counter[0], 999);
+            countingSort(&ar[0], min_size, &counter[0], 999);
+            end4 = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> diff4 = end4 - start4;
+            std::cout << diff4.count() << '\t';
+            delete [] counter;
+        // quick sort
+            sortTime(quickSort, &ar[0], min_size);
+        // merge sort
+            std::chrono::time_point<std::chrono::high_resolution_clock> start6;
+            std::chrono::time_point<std::chrono::high_resolution_clock> end6;
+            start6 = std::chrono::high_resolution_clock::now();
+            mergeSort(&ar[0], min_size);
+            merge(&ar[0], min_size, min_size/2);
+            end6 = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> diff6 = end6 - start6;
+            std::cout << diff6.count() << std::endl;
+            std::cout << diff6.count() << '\t';
         // --------------------------------
             min_size = min_size + step;
             i++;
@@ -392,43 +292,13 @@ void test_sorts() {
             int* ar = new int[min_size];
             randomAr(&ar[0], min_size);
             std::cout << min_size << '\t';
-        // --------------------------
-        // проверка времени bubble_sort
-            if(sort_remover1 == -1) {
-                return;
-            }
-            if(sort_remover1 == 0) {
-                std::chrono::time_point<std::chrono::high_resolution_clock> start1;
-                std::chrono::time_point<std::chrono::high_resolution_clock> end1;
-                start1 = std::chrono::high_resolution_clock::now();
-                bubbleSort(&ar[0], min_size);
-                end1 = std::chrono::high_resolution_clock::now();
-                std::chrono::duration<double> diff1 = end1 - start1;
-                std::cout << diff1.count() << '\t';
-            }
-        // -------------------------
+        // ------------------------------
+        // bubble sort
+            sortTime(bubbleSort, &ar[0], min_size);
         // insertion_sort
-            std::chrono::time_point<std::chrono::high_resolution_clock> start2;
-            std::chrono::time_point<std::chrono::high_resolution_clock> end2;
-            start2 = std::chrono::high_resolution_clock::now();
-            insertionSort(&ar[0], min_size);
-            end2 = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> diff2 = end2 - start2;
-            std::cout << diff2.count() << '\t';
-        // --------------------------
-        // проверка времени selection_sort
-            if(sort_remover2 == -1) {
-                return;
-            }
-            if(sort_remover2 == 0) {
-                std::chrono::time_point<std::chrono::high_resolution_clock> start3;
-                std::chrono::time_point<std::chrono::high_resolution_clock> end3;
-                start3 = std::chrono::high_resolution_clock::now();
-                selectionSort(&ar[0], min_size);
-                end3 = std::chrono::high_resolution_clock::now();
-                std::chrono::duration<double> diff3 = end3 - start3;
-                std::cout << diff3.count() << '\t';
-            }
+            sortTime(insertionSort, &ar[0], min_size);
+        // selection sort
+            sortTime(selectionSort, &ar[0], min_size);
         // counting sort
             int* counter = new int[999];
             std::chrono::time_point<std::chrono::high_resolution_clock> start4;
@@ -441,13 +311,7 @@ void test_sorts() {
             std::cout << diff4.count() << '\t';
             delete [] counter;
         // quick sort
-            std::chrono::time_point<std::chrono::high_resolution_clock> start5;
-            std::chrono::time_point<std::chrono::high_resolution_clock> end5;
-            start5 = std::chrono::high_resolution_clock::now();
-            quickSort(&ar[0], min_size);
-            end5 = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> diff5 = end5 - start5;
-            std::cout << diff5.count() << '\t';
+            sortTime(quickSort, &ar[0], min_size);
         // merge_sort
             std::chrono::time_point<std::chrono::high_resolution_clock> start6;
             std::chrono::time_point<std::chrono::high_resolution_clock> end6;
@@ -457,7 +321,7 @@ void test_sorts() {
             end6 = std::chrono::high_resolution_clock::now();
             std::chrono::duration<double> diff6 = end6 - start6;
             std::cout << diff6.count() << std::endl;
-        // ----------------------------
+            // ----------------------------
             min_size = min_size + step;
             i++;
             delete [] ar;
