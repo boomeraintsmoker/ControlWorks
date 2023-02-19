@@ -25,7 +25,7 @@ void sortTime(void(*sort)(int*, int), int* ar, int size) {
     std::chrono::duration<double> diff = end - start;
     std::cout << diff.count() << '\t';
 }
-
+очень полезные комметарии таких надо делать больше!!
 //bool isMoreTheSixty(void(*sortTime)(void(*sort)(int*, int), int* ar, int size)) {
 //    if(sortTime > )
 //}

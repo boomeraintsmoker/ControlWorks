@@ -13,11 +13,15 @@ void test_sorts() {
         int min_size = 100;
         int delta_size = max_size / min_size;
         while(i < delta_size) {
-            int* ar = new int[min_size];
+            int* ar = new int[min_size]
+надо перед каждой сортировкой рандомно заполнять массив... а не сортировать отсортированный массив...
+была дополнительная задача, где было необходимо сортировать отсортированный массив...;
             randomAr(&ar[0], min_size);
             std::cout << min_size << '\t';
         // --------------------------------
         // bubble sort
+надо перед каждой сортировкой рандомно заполнять массив... а не сортировать отсортированный массив...
+была дополнительная задача, где было необходимо сортировать отсортированный массив...
             sortTime(bubbleSort, &ar[0], min_size);
         // insertion sort
             sortTime(insertionSort, &ar[0], min_size);
@@ -25,6 +29,9 @@ void test_sorts() {
             sortTime(selectionSort, &ar[0], min_size);
         // counting sort
             int* counter = new int[999];
+
+
+загадочно.... потому что такие же строчки кода есть и в sortTime!!!!...
             std::chrono::time_point<std::chrono::high_resolution_clock> start4;
             std::chrono::time_point<std::chrono::high_resolution_clock> end4;
             start4 = std::chrono::high_resolution_clock::now();
@@ -54,7 +61,7 @@ void test_sorts() {
         // -----------------------------
             min_size = min_size + step;
             i++;
-            delete [] ar;
+            delete [] ar;	это надо вызывать когда перестаёшь пользоваться массивом.... а не в самом конце
         }
     }
     // -----------------------------
@@ -169,14 +176,15 @@ void test_sorts() {
             std::chrono::time_point<std::chrono::high_resolution_clock> start4;
             std::chrono::time_point<std::chrono::high_resolution_clock> end4;
             start4 = std::chrono::high_resolution_clock::now();
-            _putZerosToAr(&counter[0], 999);
-            countingSort(&ar[0], min_size, &counter[0], 999);
+            _putZerosToAr(&counter[0], 999);	-- что это за загадочная функция???
+            countingSort(&ar[0], min_size, &counter[0], 999);	все функции сортировок должны иметь прототип
+		void sort(int*, int);	--- другого не дано!!!
             end4 = std::chrono::high_resolution_clock::now();
             std::chrono::duration<double> diff4 = end4 - start4;
             std::cout << diff4.count() << '\t';
             delete [] counter;
         // quick_sort
-            sortTime(quickSort, &ar[0], min_size);
+            sortTime(quickSort, &ar[0], min_size);	эта функция выполняет два действия... замеряет время и выводит данные на экран.. а должна???
         // merge_sort
             std::chrono::time_point<std::chrono::high_resolution_clock> start6;
             std::chrono::time_point<std::chrono::high_resolution_clock> end6;
