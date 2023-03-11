@@ -23,7 +23,7 @@ bool is_palindrome(T number) {
 int main(int argc, char** argv) {
 	FILE* f;
         int number;
-	int count_of_tests = 5;
+	int count_of_tests = 5; // count of test nums in file
         f = fopen(argv[1], "rt");
 	for(int i = 0; i < count_of_tests; i++) {
 		fscanf(f, "%d ", &number);

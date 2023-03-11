@@ -2,6 +2,7 @@
 #include <chrono>
 #include <cmath>
 #include <vector>
+#include <fstream>
 #include "arraywork.h"
 
 void randomAr(int* ar, int size) {
@@ -20,4 +21,9 @@ double sortTime(void(*sort)(int*, int), int* ar, int size) {
     	std::chrono::duration<double> diff = end - start;
     	std::cout << round(diff.count()*100000)/100000 << '\t' << '\t';
 	return diff.count();
+}
+
+double addSortTimeToFile(FILE* f, int i, double time) {
+	if(i < 5) { fprintf(f, "%f\t", time); }
+	if(i == 5) { fprintf(f, "%f\n", time); }
 }
