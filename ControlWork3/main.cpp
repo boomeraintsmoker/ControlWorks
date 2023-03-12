@@ -19,12 +19,12 @@ bool is_palindrome(T number) {
         }
 	return true;
 }
- 
+
 int main(int argc, char** argv) {
 	FILE* f;
         int number;
-	int count_of_tests = 5; // count of test nums in file
-        f = fopen(argv[1], "rt");
+	int count_of_tests = 0; // count of tests nums in file
+	f = fopen(argv[1], "r");
 	for(int i = 0; i < count_of_tests; i++) {
 		fscanf(f, "%d ", &number);
 		std::cout << is_palindrome(number) << ' ';
